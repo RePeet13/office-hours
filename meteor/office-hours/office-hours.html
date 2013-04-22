@@ -1,10 +1,96 @@
 <head>
-  <title>office-hours</title>
+  <title>BoilerPlate</title> 
+  <!-- Bootstrap: turn on responsive CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-  {{> hello}}
+	<!-- BEGIN Top Navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="#" style="color:white;">BoilerPlate</a>
+				<!--
+				<div class="nav-collapse collapse">
+					
+					<form class="navbar-form pull-right">
+						<input class="span2" type="text" placeholder="Email">
+						<input class="span2" type="password" placeholder="Password">
+						<button type="submit" class="btn">Log In</button>   
+					</form>
+					<div class="navbar-form pull-center">
+				</div>
+				-->
+				<ul class="nav">
+					{{> navlinks}}
+				</ul>
+			</div>
+		</div>
+	</div>
+	
 </body>
+
+<template name="navlinks">
+	{{> navlogin}}
+	{{> navplace}}
+	{{> navpick}}
+</template>
+
+<template name="navlogin">
+	<li class="" id="loginli"><a href="#">login</a></li>
+</template>
+<template name="navplace">
+	<li class="" id="placeli"><a href="#">Place</a></li>
+</template>
+<template name="navpick">
+	<li class="" id="pickli"><a href="#">Pick</a></li>
+</template>
+
+<template name="login">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="page-header">
+					<h1>login <small>Please login to use this app</small></h1>
+				</div>
+				<div align="center">{{loginButtons}}</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="pick">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="page-header">
+					<h1>Pick page <small>Use this page to report retrieved items</small></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="place">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="page-header">
+					<h1>Place page <small>Use this page to request more items to be retrieved</small></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="notloggedin">
+	<div class="alert alert-block">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <h4>Warning!</h4>
+	  To use this site you must be logged in.
+	</div>
+</template>
+
 
 <template name="hello">
   <h1>Hello World!</h1>

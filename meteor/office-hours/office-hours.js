@@ -41,7 +41,7 @@ if (Meteor.isClient) {
 	// Event handling
 	
 	Template.status.events({
-		'click .btn' : function () {
+		'click' : function () {
 			if (Meteor.user() == repeet13 || Meteor.user() == RePeet13) {
 				var opt = Session.get("option");
 				if (opt > 2) {

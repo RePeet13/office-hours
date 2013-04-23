@@ -16,7 +16,7 @@ if (Meteor.isClient) {
 	});
 	
 	Deps.autorun(function () {
-		if (Meteor.user() == "repeet13"){// || Meteor.user() == "RePeet13") {
+		if (Meteor.user() == "repeet13" || Meteor.user() == "RePeet13") {
 			document.getElementById("location").setAttribute("class", "btn-large btn-"+Session.get("age"));
 		} else {
 			document.getElementById("location").setAttribute("class", "label label-"+Session.get("age"));
@@ -42,7 +42,7 @@ if (Meteor.isClient) {
 	
 	Template.status.events({
 		'click .button' : function () {
-			if (Meteor.user() == repeet13) || Meteor.user() == RePeet13) {
+			if (Meteor.user() == repeet13 || Meteor.user() == RePeet13) {
 				var opt = Session.get("option");
 				if (opt > 2) {
 					Session.set("option", 1);

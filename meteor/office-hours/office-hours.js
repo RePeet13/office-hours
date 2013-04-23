@@ -13,26 +13,6 @@ if (Meteor.isClient) {
 		Session.set("loc", "My Office");
 		Session.set("age", "success");
 		Session.set("option","2");
-		/*
-		Session.set("page", "login");
-		var fragment = Meteor.render(function () {
-			console.log("rendering template fragment");
-			var currentpage = Session.get("page");
-			if (currentpage == "pick") {
-				console.log("currentpage: " + currentpage);
-				return Template.pick();
-			}
-			if (currentpage == "place") {
-				console.log("currentpage: " + currentpage);
-				return Template.place();
-			}
-		});
-		
-		console.log("appending child- " + fragment);
-		document.body.appendChild(fragment);
-		
-		Session.set("page", "login");
-		*/
 	});
 	
 	Deps.autorun{function () {
@@ -61,19 +41,20 @@ if (Meteor.isClient) {
 
 	// Event handling
 	
-	/*
 	Template.navplace.events({
-		'click' : function () {
-			if (Meteor.user() == null){
-				notloggedin();
-				return;
+		'click btn' : function () {
+			if (Meteor.user() == repeet13 || Meteor.user() == RePeet13){
+				var opt = (int) Session.get("option")
+				if (opt > 2) {
+					Session.set("option", "1");
+				} else {
+					Session.set("option", opt+1+"");
+				}
 			}
-			document.getElementById(Session.get("page")+"li").className = "";
-			document.getElementById("placeli").className = "active";
-			Session.set("page", "place");
+			return;
 		}
 	});
-	*/
+	
 }
 
 if (Meteor.isServer) {

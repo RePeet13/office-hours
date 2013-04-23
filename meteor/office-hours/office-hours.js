@@ -50,6 +50,7 @@ if (Meteor.isClient) {
 					Session.set("option", opt+1);
 				}
 			//}
+			Deps.flush();
 		}
 	});
 	

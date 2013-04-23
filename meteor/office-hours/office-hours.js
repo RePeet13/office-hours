@@ -15,6 +15,7 @@ if (Meteor.isClient) {
 		Session.set("option",2);
 	});
 	
+	/*
 	Deps.autorun(function () {
 		if (Meteor.user() == "repeet13" || Meteor.user() == "RePeet13") {
 			document.getElementById("location").setAttribute("class", "btn-large btn-"+Session.get("age"));
@@ -22,7 +23,22 @@ if (Meteor.isClient) {
 			document.getElementById("location").setAttribute("class", "label label-"+Session.get("age"));
 		}
 	});
+	*/
 	
+	Meteor.render(function () {
+		var option = Session.get("option");
+			switch(option) {
+				case 0:
+					//case where you display whatever the db says
+					break;
+				case 1:
+					return Template.status({area: "Baird Lab"});
+				default:
+					return Template.status({area: "My Office (Klaus)"});
+			}
+	})
+	
+	/*
 	Deps.autorun(function () {
 		var option = Session.get("option");
 		switch(option) {
@@ -37,11 +53,13 @@ if (Meteor.isClient) {
 		}
 		
 		});
+		*/
 
 	// Event handling
 	
 	Template.status.events({
 		'click .btn-large' : function () {
+			console.log("ouch, you clicked me!");
 			//if (Meteor.user() == repeet13 || Meteor.user() == RePeet13) {
 				var opt = Session.get("option");
 				if (opt > 2) {

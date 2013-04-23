@@ -13,6 +13,21 @@ if (Meteor.isClient) {
 		Session.set("loc", "My Office");
 		Session.set("age", "success");
 		Session.set("option",2);
+		
+		var frag = Meteor.render(function () {
+			var option = Session.get("option");
+			switch(option) {
+				case 0:
+					//case where you display whatever the db says
+					break;
+				case 1:
+					return Template.status({area: "Baird Lab"});
+				default:
+					return Template.status({area: "My Office (Klaus)"});
+			}
+			});
+		document.body.appendChild(frag);
+		//document.getElementById("here").innerHTML = frag;
 	});
 	
 	/*
@@ -25,18 +40,7 @@ if (Meteor.isClient) {
 	});
 	*/
 	
-	Meteor.render(function () {
-		var option = Session.get("option");
-			switch(option) {
-				case 0:
-					//case where you display whatever the db says
-					break;
-				case 1:
-					return Template.status({area: "Baird Lab"});
-				default:
-					return Template.status({area: "My Office (Klaus)"});
-			}
-	})
+
 	
 	/*
 	Deps.autorun(function () {

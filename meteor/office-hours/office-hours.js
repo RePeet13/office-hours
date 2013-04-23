@@ -1,3 +1,5 @@
+Update = new Meteor.Collection("update");
+
 if (Meteor.isClient) {
 	// TODO implement a changing color based on the age of the last update
 	
@@ -10,13 +12,19 @@ if (Meteor.isClient) {
 	//Startup Function
 	Meteor.startup(function() {
 		console.log("entered startup");
+		Meteor.subscribe("update");
 		Session.set("loc", "My Office");
 		Session.set("age", "success");
 		Session.set("option",2);
 		
 		var frag = Meteor.render(function () {
-			var option = Session.get("option");
-			switch(option) {
+			var opt = Session.get("option");
+			console.log("fetching");
+			var myloc = Update.find().fetch();
+			console.log("updating");
+			Update.update(myloc._id, {option: opt});
+			console.log("option " + opt);
+			switch(opt) {
 				case 0:
 					//case where you display whatever the db says
 					break;
@@ -27,10 +35,9 @@ if (Meteor.isClient) {
 			}
 			});
 		document.body.appendChild(frag);
-		//document.getElementById("here").innerHTML = frag;
 	});
 	
-	/*
+	/* TODO make this change out the color
 	Deps.autorun(function () {
 		if (Meteor.user() == "repeet13" || Meteor.user() == "RePeet13") {
 			document.getElementById("location").setAttribute("class", "btn-large btn-"+Session.get("age"));
@@ -39,32 +46,13 @@ if (Meteor.isClient) {
 		}
 	});
 	*/
-	
-
-	
-	/*
-	Deps.autorun(function () {
-		var option = Session.get("option");
-		switch(option) {
-			case 0:
-				//case where you display whatever the db says
-				break;
-			case 1:
-				document.getElementById("location").innerHTML = "Baird Lab";
-				break;
-			default:
-				document.getElementById("location").innerHTML = "My Office (Klaus)";
-		}
-		
-		});
-		*/
 
 	// Event handling
 	
 	Template.status.events({
 		'click .btn-large' : function () {
-			console.log("ouch, you clicked me!");
-			if (Meteor.user() == repeet13 || Meteor.user() == RePeet13) {
+			console.log("ouch, you clicked me! " + Meteor.user());
+			if (Meteor.user() == "repeet13" || Meteor.user() == "RePeet13") {
 				var opt = Session.get("option");
 				if (opt > 2) {
 					Session.set("option", 1);
@@ -79,7 +67,13 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+	Meteor.startup(function () {
+		if (Update.find().count() === 0) {
+			Update.insert({name: "Location", option: 2, custom: "none"});
+		}
+	});
+  
+	Meteor.publish("update", function () {
+		return Update.find({name: "Location"});
+	});
 }

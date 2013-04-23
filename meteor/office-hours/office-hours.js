@@ -10,6 +10,9 @@ if (Meteor.isClient) {
 	//Startup Function
 	Meteor.startup(function() {
 		console.log("entered startup");
+		Session.set("loc", "My Office");
+		Session.set("age", "success");
+		Session.set("option","2");
 		/*
 		Session.set("page", "login");
 		var fragment = Meteor.render(function () {
@@ -33,7 +36,27 @@ if (Meteor.isClient) {
 	});
 	
 	Deps.autorun{function () {
+		if (Meteor.user() == "repeet13" || Meteor.user() == "RePeet13") {
+			document.getElementById("location").setAttribute("class", "btn-large btn-"+Session.get("age"));
+		} else {
+			document.getElementById("location").setAttribute("class", "label label-"+Session.get("age"));
+		}
+	}
 	
+	Deps.autorun{function () {
+		var option = (int)Session.get("option");
+		switch(option) {
+			case 0:
+				//case where you display whatever the db says
+				break;
+			case 1:
+				document.getElementById("location").innerHTML = "Baird Lab";
+				break;
+			default:
+				document.getElementById("location").innerHTML = "My Office (Klaus)";
+		}
+		
+		}	
 	}
 
 	// Event handling

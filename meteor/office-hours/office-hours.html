@@ -27,10 +27,7 @@
 		</div>
 		<div class="row-fluid">
 			<div class="span4 offset4">
-				<div id="location" class="btn-large btn-success">My Office</div>
-				<div class="text-center">
-					<p>Last updated: </p><p id="updated-time">none</p>
-				</div>
+				{{> status}}
 			</div>
 		</div>
 	</div>
@@ -44,3 +41,9 @@
 	</div>
 </body>
 
+<template name="status">
+<div id="location" class="label label-success">My Office</div>
+<div class="text-center">
+	<p>Last updated: </p><p id="updated-time">none</p>
+</div>
+</template>

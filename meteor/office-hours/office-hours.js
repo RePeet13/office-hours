@@ -41,15 +41,15 @@ if (Meteor.isClient) {
 	// Event handling
 	
 	Template.status.events({
-		'click' : function () {
-			if (Meteor.user() == repeet13 || Meteor.user() == RePeet13) {
+		'click .btn-large' : function () {
+			//if (Meteor.user() == repeet13 || Meteor.user() == RePeet13) {
 				var opt = Session.get("option");
 				if (opt > 2) {
 					Session.set("option", 1);
 				} else {
 					Session.set("option", opt+1);
 				}
-			}
+			//}
 		}
 	});
 	

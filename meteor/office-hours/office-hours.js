@@ -64,14 +64,14 @@ if (Meteor.isClient) {
 	Template.status.events({
 		'click .btn-large' : function () {
 			console.log("ouch, you clicked me!");
-			//if (Meteor.user() == repeet13 || Meteor.user() == RePeet13) {
+			if (Meteor.user() == repeet13 || Meteor.user() == RePeet13) {
 				var opt = Session.get("option");
 				if (opt > 2) {
 					Session.set("option", 1);
 				} else {
 					Session.set("option", opt+1);
 				}
-			//}
+			}
 			Deps.flush();
 		}
 	});

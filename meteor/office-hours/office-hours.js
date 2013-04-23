@@ -15,16 +15,16 @@ if (Meteor.isClient) {
 		Session.set("option","2");
 	});
 	
-	Deps.autorun{function () {
-		if (Meteor.user() == "repeet13" || Meteor.user() == "RePeet13") {
+	Deps.autorun(function () {
+		if (Meteor.user() == "repeet13"){// || Meteor.user() == "RePeet13") {
 			document.getElementById("location").setAttribute("class", "btn-large btn-"+Session.get("age"));
 		} else {
 			document.getElementById("location").setAttribute("class", "label label-"+Session.get("age"));
 		}
-	}
+	});
 	
-	Deps.autorun{function () {
-		var option = (int)Session.get("option");
+	Deps.autorun(function () {
+		var option = Session.get("option");
 		switch(option) {
 			case 0:
 				//case where you display whatever the db says
@@ -36,22 +36,20 @@ if (Meteor.isClient) {
 				document.getElementById("location").innerHTML = "My Office (Klaus)";
 		}
 		
-		}	
-	}
+		});
 
 	// Event handling
 	
-	Template.navplace.events({
-		'click btn' : function () {
-			if (Meteor.user() == repeet13 || Meteor.user() == RePeet13){
-				var opt = (int) Session.get("option")
+	Template.status.events({
+		'click .button' : function () {
+			if (Meteor.user() == repeet13){// || Meteor.user() == RePeet13) {
+				var opt = Session.get("option");
 				if (opt > 2) {
 					Session.set("option", "1");
 				} else {
 					Session.set("option", opt+1+"");
 				}
 			}
-			return;
 		}
 	});
 	

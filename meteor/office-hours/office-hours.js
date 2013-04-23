@@ -12,7 +12,7 @@ if (Meteor.isClient) {
 		console.log("entered startup");
 		Session.set("loc", "My Office");
 		Session.set("age", "success");
-		Session.set("option","2");
+		Session.set("option",2);
 	});
 	
 	Deps.autorun(function () {
@@ -42,12 +42,12 @@ if (Meteor.isClient) {
 	
 	Template.status.events({
 		'click .button' : function () {
-			if (Meteor.user() == repeet13){// || Meteor.user() == RePeet13) {
+			if (Meteor.user() == repeet13) || Meteor.user() == RePeet13) {
 				var opt = Session.get("option");
 				if (opt > 2) {
-					Session.set("option", "1");
+					Session.set("option", 1);
 				} else {
-					Session.set("option", opt+1+"");
+					Session.set("option", opt+1);
 				}
 			}
 		}

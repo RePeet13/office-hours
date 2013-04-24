@@ -2,6 +2,7 @@ Update = new Meteor.Collection("update");
 
 if (Meteor.isClient) {
 	// TODO implement a changing color based on the age of the last update
+	// Immediately green, green for 2 hours, then yellow, day change red
 	
 	
 	// Static configuration type things
@@ -39,7 +40,7 @@ if (Meteor.isClient) {
 	
 	/* TODO make this change out the color
 	Deps.autorun(function () {
-		if (Meteor.user() == "repeet13" || Meteor.user() == "RePeet13") {
+		if (Meteor.userId() == "repeet13" || Meteor.user() == "RePeet13") {
 			document.getElementById("location").setAttribute("class", "btn-large btn-"+Session.get("age"));
 		} else {
 			document.getElementById("location").setAttribute("class", "label label-"+Session.get("age"));
@@ -52,7 +53,7 @@ if (Meteor.isClient) {
 	Template.status.events({
 		'click .btn-large' : function () {
 			console.log("ouch, you clicked me! " + Meteor.user());
-			if (Meteor.user() == "repeet13" || Meteor.user() == "RePeet13") {
+			if (Meteor.userId() == "repeet13" || Meteor.userId() == "RePeet13") {
 				var opt = Session.get("option");
 				if (opt > 2) {
 					Session.set("option", 1);

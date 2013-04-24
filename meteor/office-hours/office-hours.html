@@ -28,11 +28,7 @@
 		
 		<div class="row-fluid">
 			<div id="here" class="span4 offset4">
-				<div id="location" class="btn-large btn-success text-center">{{area}}</div>
-				<br />
-				<div class="text-center">
-					<p>Last updated: </p><p id="updated-time">none</p>
-				</div>
+					{{> status}}
 			</div>
 		</div>
 	</div>
@@ -47,6 +43,35 @@
 </body>
 
 <template name="status">
+{{#if loading}}
+	<div class="btn-large btn-info">Loading...</div>
+{{else}}
+	<div id="location" class="btn-large btn-success text-center">{{area}}</div>
+	<br />
+	<div class="text-center">
+		<p>Last updated: </p><p>{{lastTime}}</p>
+	</div>
+{{/if}}
+
+</template>
+
+<template name="todos">
+  {{#if any_list_selected}}
+    <div id="items-view">
+      {{#if loading}}
+        Loading...
+      {{else}}
+        <div id="new-todo-box">
+          <input type="text" id="new-todo" placeholder="New item" />
+        </div>
+        <ul id="item-list">
+          {{#each todos}}
+            {{> todo_item}}
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+  {{/if}}
 </template>
 
 

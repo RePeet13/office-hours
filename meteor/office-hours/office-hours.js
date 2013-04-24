@@ -13,7 +13,8 @@ if (Meteor.isClient) {
 	//Startup Function
 	Meteor.startup(function() {
 		console.log("entered startup");
-		Meteor.subscribe("update");
+		var updateHandle = null;
+		updateHandle = Meteor.subscribe("update");
 		Session.set("loc", "My Office");
 		Session.set("age", "success");
 		Session.set("option",2);
@@ -54,6 +55,14 @@ if (Meteor.isClient) {
 		}
 	});
 	*/
+	
+	Template.status.loading = function () {
+		return updateHandle && !updateHandle.ready();
+	};
+	
+	Template.status.lastTime = function () {
+		return "none";
+	};
 
 	// Event handling
 	

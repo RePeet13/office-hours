@@ -42,7 +42,7 @@ Template.status.area = function () {
 
 Template.status.date = function () {
 	Session.set("option", this.option);
-	return this.date;
+	return this.date.getSeconds();
 };
 
 /* TODO make this change out the color */

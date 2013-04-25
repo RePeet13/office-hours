@@ -30,6 +30,9 @@
 			<div id="here" class="span4 offset4">
 					{{> status}}
 			</div>
+            <div id="regen" class="span4">
+                {{> regen}}
+            </div>
 		</div>
 	</div>
 	<!-- END Body -->
@@ -54,5 +57,12 @@
 		</div>
 	{{/each}}
 {{/if}}
+</template>
 
+<template name="regen">
+{{#if allowed}}
+    <div class="btn-large btn-info text-center">Regen DB</div>
+{{else}}
+	<div />
+{{/if}}
 </template>

@@ -43,6 +43,8 @@ Template.status.area = function () {
 Template.status.date = function () {
 	Session.set("option", this.option);
     var d = new Date(this.date);
+    if (d.getHours() == "NaN")
+        return "none"
 	return d.getHours() + ":" + d.getMinutes() + " on " + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 };
 

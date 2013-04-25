@@ -100,10 +100,7 @@ Template.status.events({
 Template.regen.events({
     'click .btn-large' : function () {
 		console.log("ouch, you clicked my regen");
-        
-		if (checkUser()) { // can probably do this restriction on the server (safer too)
-			regen();
-		}
+		Meteor.call(regen);
 	}
 });
 

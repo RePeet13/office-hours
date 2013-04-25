@@ -52,7 +52,8 @@ Template.status.date = function () {
     var d = new Date(this.date);
     if (d.getHours() == "NaN")
         return "none"
-	return d.getHours() + ":" + d.getMinutes() + " on " + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+    m = (d.getMinutes() < 10) ? "0" + m : m; //format minutes
+	return d.getHours() + ":" + m + " on " + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 };
 
 /* TODO make this change out the color */

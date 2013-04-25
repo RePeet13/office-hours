@@ -36,7 +36,7 @@
 	
 	<!-- Footer -->
 	<div class="footer">
-		<div class="container">
+		<div class="container text-center">
 		<p>Copyright (by nobody) | 2013</p>
 		</div>
 	</div>
@@ -56,27 +56,3 @@
 {{/if}}
 
 </template>
-
-<template name="todos">
-  {{#if any_list_selected}}
-    <div id="items-view">
-      {{#if loading}}
-        Loading...
-      {{else}}
-        <div id="new-todo-box">
-          <input type="text" id="new-todo" placeholder="New item" />
-        </div>
-        <ul id="item-list">
-          {{#each todos}}
-            {{> todo_item}}
-          {{/each}}
-        </ul>
-      {{/if}}
-    </div>
-  {{/if}}
-</template>
-
-
-
-		
-		

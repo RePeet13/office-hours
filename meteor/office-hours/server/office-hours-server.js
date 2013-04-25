@@ -6,3 +6,11 @@ Meteor.startup(function () {
 		Update.insert({name: "Location", option: 0, area: "Off-Campus", date: timestamp});
 	}
 });
+
+Meteor.methods({
+  regen: function () {
+        Update.remove({});
+    	var timestamp = new Date();
+    	Update.insert({name: "Location", option: 0, area: "Off-Campus", date: timestamp});
+  }
+});

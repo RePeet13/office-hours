@@ -102,7 +102,8 @@ Template.regen.events({
 		console.log("ouch, you clicked my regen");
         event.preventDefault();
         event.stopPropagation();
-		Meteor.call(regen);
+		Meteor.call("regen");
+        console.log("after method call");
 	}
 });
 

@@ -44,13 +44,15 @@
 
 <template name="status">
 {{#if loading}}
-	<div class="btn-large btn-info">Loading...</div>
+	<div class="btn-large btn-info text-center">Loading...</div>
 {{else}}
-	<div id="location" class="btn-large btn-success text-center">{{area}}</div>
-	<br />
-	<div class="text-center">
-		<p>Last updated: </p><p>{{lastTime}}</p>
-	</div>
+	{{#each status}} 
+		<div id="location" class="btn-large btn-{{age}} text-center">{{area}}</div>
+		<br />
+		<div class="text-center">
+			<p>Last updated: </p><p>{{date}}</p>
+		</div>
+	{{/each}}
 {{/if}}
 
 </template>

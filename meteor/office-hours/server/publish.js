@@ -1,3 +1,5 @@
+/*
+
 // Lists -- {name: String}
 Lists = new Meteor.Collection("lists");
 
@@ -20,13 +22,8 @@ Meteor.publish('todos', function (list_id) {
 });
 
 ---------------
-
-	Meteor.publish("update", function () {
-		return Update.find({name: "Location"});
-	});
+*/
+Meteor.publish("update", function () {
+	return Update.find({}, {name: "Location"});
+});
 	
-	Update.allow({
-		insert: function (userId, location) {
-			return false;
-		}
-	});

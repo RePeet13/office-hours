@@ -44,6 +44,7 @@ Template.status.loading = function () {
 };
 
 Template.status.area = function () {
+    Session.set("option", this.option);
 	return this.area;
 };
 
@@ -52,7 +53,8 @@ Template.status.date = function () {
     var d = new Date(this.date);
     if (d.getHours() == "NaN")
         return "none"
-    var m = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes(); //format minutes
+    var m = d.getMinutes();
+    m = (m < 10) ? "0" + m : m; //format minutes
 	return d.getHours() + ":" + m + " on " + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 };
 

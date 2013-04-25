@@ -43,7 +43,7 @@ Template.status.area = function () {
 Template.status.date = function () {
 	Session.set("option", this.option);
     var d = new Date(this.date);
-	return d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + " on " + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+	return d.getHours() + ":" + d.getMinutes() + " on " + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 };
 
 /* TODO make this change out the color */
@@ -60,9 +60,10 @@ Template.status.events({
 		var dbg = "null";
 		if (Meteor.user() != null)
 			dbg = Meteor.user().username;
-			
+		
+        var opt = 0;
 		if (Meteor.user() != null && (Meteor.user().username == "repeet13" || Meteor.user().username == "RePeet13")) { // can probably do this restriction on the server (safer too)
-			var opt = (Session.get("option") > 2) ? 0 : opt+=1; //inc if not too big
+			opt = (Session.get("option") > 2) ? 0 : opt+=1; //inc if not too big
 			var timestamp = (new Date()).getTime();
 			
 			console.log("updating to: " + opt);

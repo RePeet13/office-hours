@@ -9,8 +9,7 @@ Meteor.startup(function () {
 
 Meteor.methods({
   regen: function () {
-        Update.remove({name: "Location"});
     	var timestamp = new Date();
-    	Update.insert({name: "Location", option: 0, area: "Off-Campus", date: timestamp});
+    	Update.update({name: "Location"}, {option: 0, area: "Off-Campus", date: timestamp});
   }
 });

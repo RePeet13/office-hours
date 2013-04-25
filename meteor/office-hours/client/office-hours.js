@@ -69,7 +69,7 @@ Template.status.events({
 			var timestamp = (new Date()).getTime();
 			
 			console.log("updating to: " + opt);
-			
+			Session.set("option", opt);
 			switch(opt) {
 			case 0:
 				Update.update(this._id, {option: opt, area: "Off-Campus", date: timestamp});

@@ -98,8 +98,10 @@ Template.status.events({
 });
 
 Template.regen.events({
-    'click .btn-large' : function () {
+    'click .btn-large' : function (event) {
 		console.log("ouch, you clicked my regen");
+        event.preventDefault();
+        event.stopPropagation();
 		Meteor.call(regen);
 	}
 });

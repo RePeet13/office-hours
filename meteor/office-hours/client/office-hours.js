@@ -80,10 +80,10 @@ Template.status.events({
 		
         var opt = Session.get("option");
 		if (checkUser()) { // can probably do this restriction on the server (safer too)
-			opt = (opt > 2) ? 0 : opt++; //inc if not too big
+			opt = (opt > 2) ? 0 : opt+1; //inc if not too big
 			var timestamp = (new Date()).getTime();
 			
-			console.log("updating" + Session.get("option") + "to: " + opt);
+			console.log("updating " + Session.get("option") + " to: " + opt);
 			Session.set("option", opt);
 			switch(opt) {
 			case 0:

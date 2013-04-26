@@ -57,8 +57,15 @@ Template.status.date = function () {
     if (d.getHours() == "NaN")
         return "none"
     var m = d.getMinutes();
-    Session.set("age", ((m>1) ? ((m>3) ? "danger" : "warning") : "success")); //test
-    //Session.set("age", ((m>90) ? ((m>240) ? "danger" : "warning") : "success")); //real
+    var diff = ((new Date()).getTime() - d.getTime())/1000;
+    var daydiff = Math.floor(diff/86400);
+    if (daydiff >= 1) {
+        Session.set("age", "danger");
+    }
+    else {
+        Session.set("age", ((diff>60) ? ((diff>180) ? "danger" : "warning") : "success")); //test
+        //Session.set("age", ((m>90) ? ((m>240) ? "danger" : "warning") : "success")); //real
+    }
     m = (m < 10) ? "0" + m : m; //format minutes
 	return d.getHours() + ":" + m + " on " + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 };

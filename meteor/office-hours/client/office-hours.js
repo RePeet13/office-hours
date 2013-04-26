@@ -5,7 +5,7 @@ Meteor.startup(function () {
 
 	// Session Vars
 	// Location
-	Session.setDefault("loc", "My Office (Klaus)");
+	Session.setDefault("area", null);
 	// Age of last update
 	Session.setDefault("age", "success");
 	// Location number (for iterating)
@@ -17,7 +17,7 @@ Meteor.startup(function () {
 // Immediately green, green for 2 hours, then yellow, day change red
 var updateHandle = null;
 updateHandle = Meteor.subscribe("update", function () {
-  if (!Session.get("age")) 
+  if (!Session.get("area")) 
     var myloc = Update.findOne({}, {sort: {name: 1}});
 });
 
@@ -32,6 +32,8 @@ checkUser = function () {
         
     if (Meteor.user().username == "repeet13" || Meteor.user().username == "RePeet13")
         return true;
+        
+    return false;
 }
 
 // Template Methods and Helpers
@@ -45,6 +47,7 @@ Template.status.loading = function () {
 
 Template.status.area = function () {
     Session.set("option", this.option);
+    Session.set("area", this.area);
 	return this.area;
 };
 
@@ -74,24 +77,28 @@ Template.status.events({
 	'click .btn-large' : function () {
 		console.log("ouch, you clicked me");
 		
-        var opt = 0;
+        var opt = Session.get("option");
 		if (checkUser()) { // can probably do this restriction on the server (safer too)
-			opt = (Session.get("option") > 2) ? 0 : opt+=1; //inc if not too big
+			opt = (opt > 2) ? 0 : opt++; //inc if not too big
 			var timestamp = (new Date()).getTime();
 			
-			console.log("updating to: " + opt);
+			console.log("updating" + Session.get("option") + "to: " + opt);
 			Session.set("option", opt);
 			switch(opt) {
 			case 0:
+                Session.set("area", "Off-Campus");
 				Update.update(this._id, {option: opt, area: "Off-Campus", date: timestamp});
 				break;
 			case 1:
+                Session.set("area", "My Office (Klaus)");
 				Update.update(this._id, {option: opt, area: "My Office (Klaus)", date: timestamp});
 				break;
 			case 2:
+                Session.set("area", "Baird Lab");
 				Update.update(this._id, {option: opt, area: "Baird Lab", date: timestamp});
 				break;
 			default:
+                Session.set("area", "My Office (Klaus)");
 				Update.update(this._id, {option: opt, area: "My Office (Klaus)", date: timestamp});
 				break;
 			}

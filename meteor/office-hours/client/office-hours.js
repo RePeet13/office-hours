@@ -64,6 +64,7 @@ Template.status.date = function () {
     }
     else {
         Session.set("age", ((diff>5400) ? ((diff>14400) ? "danger" : "warning") : "success"));
+    }
     m = (m < 10) ? "0" + m : m; //format minutes
 	return d.getHours() + ":" + m + " on " + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 };

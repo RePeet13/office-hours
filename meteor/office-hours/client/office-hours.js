@@ -63,9 +63,7 @@ Template.status.date = function () {
         Session.set("age", "danger");
     }
     else {
-        Session.set("age", ((diff>60) ? ((diff>180) ? "danger" : "warning") : "success")); //test
-        //Session.set("age", ((m>90) ? ((m>240) ? "danger" : "warning") : "success")); //real
-    }
+        Session.set("age", ((diff>5400) ? ((diff>14400) ? "danger" : "warning") : "success"));
     m = (m < 10) ? "0" + m : m; //format minutes
 	return d.getHours() + ":" + m + " on " + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 };
